@@ -10,8 +10,6 @@
 #pragma comment( lib, "k4a.lib" )
 #pragma comment( lib, "AKDKCamLib.lib" )
 
-#define ENABLE_CSV_OUTPUT		1			// 1=CSV 出力を有効にする
-
 // イメージの解像度
 #define COLOR_RESOLUTION_WIDTH	(1280)
 #define COLOR_RESOLUTION_HEIGHT	(720)
@@ -269,12 +267,11 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 			EndPaint( hWnd, &ps );
 		}
 		return 0;
-#if ENABLE_CSV_OUTPUT
 	case WM_KEYDOWN:
+		// スペースキーを押すごとにビューを切り替える
 		if ( wParam == VK_SPACE )
 			g_bSendToAKDKCamLib = (++g_bSendToAKDKCamLib) & 3;
 		break;
-#endif
 	case WM_CLOSE:
 		DestroyWindow( hWnd );
 	case WM_DESTROY:
